@@ -3,13 +3,13 @@ import { AppError, handleError } from "../../errors/appErro";
 import { vehicleUpdateService } from "../../services/vehicle/vehicleUpdate.service";
 
 export const vehicleUpdateController = async (req: Request, res: Response) => {
-  const body = req.body;
-  const { id } = req.params;
-
+  
   try {
-    const vehicle = await vehicleUpdateService(body, id);
+    const body = req.body;
+    const id = req.params.id;
 
-    return res.send(vehicle)
+    const vehicle = await vehicleUpdateService(body, id);
+    return res.json({ message: "Updated Vehicle", vehicle})
   } catch (error) {
     if (error instanceof AppError) {
       handleError(error, res);

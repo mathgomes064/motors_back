@@ -2,6 +2,7 @@ import { Vehicle } from "../../entities/vehicle.entity";
 import { IVehicleUpdate } from "../../interfaces/vehicle";
 import { v4 as uuidv4 } from "uuid";
 import { AppDataSource } from "../../data-source";
+import { AppError } from "../../errors/appErro";
 
 export const vehicleUpdateService = async (
   body: IVehicleUpdate,

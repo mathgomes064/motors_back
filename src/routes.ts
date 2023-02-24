@@ -9,7 +9,7 @@ import { vehicleUpdateController } from "./controllers/vehicle/vehicleUpdate.con
 
 routes.post("/vehicles", vehicleCreateController);
 routes.get("/vehicles", vehicleListController);
-routes.patch("/vehicles", vehicleUpdateController);
-routes.patch("/vehicles", vehicleDeleteController);
+routes.patch("/vehicles/:id", vehicleUpdateController);
+routes.delete("/vehicles/:id", vehicleDeleteController);
 
 export default routes;

@@ -5,6 +5,7 @@ import { vehicleListByIdService } from "../../services/vehicle/vehicleListById.s
 export const vehicleListByIdController = async (req: Request, res: Response) => {
   const vehicleId = req.params.id;
   try {
+    res.header("Access-Control-Allow-Origin", "*");
     const vehicle = await vehicleListByIdService(vehicleId);
 
     return res.send(vehicle);

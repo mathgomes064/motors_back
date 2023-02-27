@@ -18,3 +18,8 @@ export interface IUserCreate{
     isAdvertiser: boolean,
     password: string,
 }
+
+export interface IUserLogin {
+    email: string;
+    password: string;
+  }

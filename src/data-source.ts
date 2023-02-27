@@ -25,8 +25,4 @@ export const AppDataSource = new DataSource({
 
 })
 
-AppDataSource.initialize().then(() => {
-    console.log("Data Source Initialized :)")
-}).catch((err) => {
-    console.error("Error during Data Source Initialization", err)
-})
+export default DataSource;

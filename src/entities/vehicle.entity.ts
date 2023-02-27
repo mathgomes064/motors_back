@@ -1,5 +1,8 @@
-import {Entity, Column, PrimaryColumn} from "typeorm"
+import {Entity, Column, PrimaryColumn, ManyToOne} from "typeorm"
 import { v4 as uuid } from "uuid"
+import { User } from "./user.entity"
+
+// Relacionamento Many to One com User (Lado Many)
    
 @Entity()
 export class Vehicle{
@@ -29,6 +32,9 @@ export class Vehicle{
 
     @Column()
     created_at: Date
+
+    @ManyToOne((type) => User, user => user.vehicle)
+    user: User
 
     constructor(){
         if(!this.id){

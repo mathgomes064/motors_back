@@ -7,7 +7,6 @@ export const vehicleCreateController = async(req: Request, res: Response) =>{
         const {title, year, mileage, price, description, type, urlImage} = req.body;
 
         const newVehicle = await vehicleCreateService({title, year, mileage, price, description, type, urlImage})
-
         return res.status(201).send(newVehicle)
     } catch (error) {
         if(error instanceof AppError){

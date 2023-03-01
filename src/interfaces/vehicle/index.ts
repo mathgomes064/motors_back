@@ -19,6 +19,7 @@ export interface IVehicleCreate {
   type: string;
   urlImage: string;
   createdAt?: Date;
+  userId: string
 }
 
 export interface IVehicleUpdate {

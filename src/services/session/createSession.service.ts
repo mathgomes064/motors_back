@@ -3,39 +3,32 @@ import { IUserLogin } from "../../interfaces/user";
 import "dotenv/config";
 import { AppError } from "../../errors/appErro";
 import { compare } from "bcrypt";
+import bcrypt from "bcrypt"
 import { AppDataSource } from "../../data-source";
 import jwt from "jsonwebtoken";
 
 const createSessionService = async ({ email, password }: IUserLogin) => {
-  const userRepository = AppDataSource.getRepository(User);
+    const userRepository = AppDataSource.getRepository(User)
+    const users = await userRepository.find()
 
-  const user = await userRepository.findOneBy({ email });
+    const account = users.find((user) => user.email === email)
 
-  if (!user) {
-    throw new AppError(403, "Invalid email or password.");
-  }
-
-  const checkPassword = await compare(password, user.password);
-
-  if (!checkPassword) {
-    throw new AppError(403, "Invalid email or password.");
-  }
-
-  const token = jwt.sign(
-    {
-      name: user.name,
-      email: user.email,
-      cpf: user.cpf,
-      isAdvertiser: user.isAdvertiser,
-    },
-    process.env.JWT_SECRET as string,
-    {
-      subject: user.id,
-      expiresIn: "5h",
+    if(!account){
+        throw new AppError(403, "Wrong email/password")
     }
-  );
 
-  return { userId: user.id, isAdvertiser: user.isAdvertiser, token };
+    if(!bcrypt.compareSync(password, account.password)){
+        throw new Error("Wrong email/password")
+    }
+
+    
+    const token = jwt.sign(
+        {email: email},
+        String(process.env.JWT_SECRET),
+        {expiresIn: "1d"}
+    )
+
+    return token
 };
 
 export default createSessionService;

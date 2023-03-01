@@ -4,9 +4,9 @@ import { vehicleCreateService } from "../../services/vehicle/vehicleCreate.servi
 
 export const vehicleCreateController = async(req: Request, res: Response) =>{
     try {
-        const {title, year, mileage, price, description, type, urlImage} = req.body;
+        const vehicle = req.body;
 
-        const newVehicle = await vehicleCreateService({title, year, mileage, price, description, type, urlImage})
+        const newVehicle = await vehicleCreateService(vehicle)
         return res.status(201).send(newVehicle)
     } catch (error) {
         if(error instanceof AppError){

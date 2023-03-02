@@ -1,6 +1,7 @@
-import {Entity, Column, PrimaryColumn, OneToOne, JoinColumn, OneToMany} from "typeorm"
+import {Entity, Column, PrimaryColumn, OneToOne, JoinColumn, OneToMany, ManyToOne} from "typeorm"
 import { v4 as uuid } from "uuid"
 import { Address } from "./address.entity"
+import { Comment } from "./comment.entity"
 import { Vehicle } from "./vehicle.entity"
 
 // Relacionamento One to One com Address
@@ -45,6 +46,11 @@ export class User{
         onDelete: "CASCADE"
     })
     vehicle: Vehicle[]
+
+    @ManyToOne(() => Comment)
+
+    comment: Comment;
+  
 
     constructor(){
         if(!this.id){

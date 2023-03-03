@@ -32,3 +32,5 @@ export interface IVehicleUpdate {
   urlImage?: string;
   createdAt?: Date;
 }
+
+

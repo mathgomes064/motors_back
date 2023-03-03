@@ -2,8 +2,6 @@ import { DataSource } from "typeorm"
 import { Address } from "./entities/address.entity";
 import { User } from "./entities/user.entity";
 import { Vehicle } from "./entities/vehicle.entity";
-import { Comment } from "./entities/comment.entity";
-
 require("dotenv").config();
 
 export const AppDataSource = new DataSource({

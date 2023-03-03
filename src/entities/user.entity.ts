@@ -40,6 +40,9 @@ export class User{
     @Column()
     password: string
 
+    @Column()
+    confirmPassword: string
+
     @OneToMany((type) => Vehicle, vehicle => vehicle.user, {
         eager: true,
         onDelete: "CASCADE"

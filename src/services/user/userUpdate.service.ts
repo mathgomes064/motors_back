@@ -16,7 +16,9 @@ export const userUpdateService = async(data: IUserUpdate, id: string) =>{
     
     if(data.password){
         const updatedPassword = await hash(data.password!, 10)
+        const updatedConfirmPassword = await hash(data.confirmPassword!, 10)
         data.password = updatedPassword
+        data.confirmPassword = updatedConfirmPassword
     }
 
     if(data.address){

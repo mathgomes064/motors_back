@@ -26,6 +26,7 @@ export interface IUserCreate{
     address: IAddressCreate,
     isAdvertiser: boolean,
     password: string,
+    confirmPassword: string
 }
 
 export interface IUserUpdate{
@@ -38,6 +39,7 @@ export interface IUserUpdate{
     address?: IAddressUpdate | undefined,
     isAdvertiser?: boolean,
     password?: string,
+    confirmPassword?: string
 }
 
 export interface IUserLogin {

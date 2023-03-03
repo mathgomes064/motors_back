@@ -14,6 +14,7 @@ export const userCreateService = async({
     description,
     address,
     password,
+    confirmPassword,
     isAdvertiser
 }: IUserCreate): Promise<User> =>{
     const userRepository = AppDataSource.getRepository(User)
@@ -37,6 +38,7 @@ export const userCreateService = async({
     await addressRepository.save(addressObj)
 
     const hashedPassword = await hash(password, 10);
+    const hashedConfirmPassword = await hash(confirmPassword, 10)
 
     const newUser = userRepository.create({
         name,
@@ -47,6 +49,7 @@ export const userCreateService = async({
         description,
         address: addressObj,
         password: hashedPassword,
+        confirmPassword: hashedConfirmPassword,
         isAdvertiser
     })
 

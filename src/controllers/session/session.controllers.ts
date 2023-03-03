@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { AppError, handleError } from "../../errors/appErro";
 import { IUserLogin } from "../../interfaces/user";
-import createSessionService from "../../services/session/createSession.service";
+import { createSessionService } from "../../services/session/createSession.service";
 
 
 export const createSessionController = async (req: Request, res: Response) => {

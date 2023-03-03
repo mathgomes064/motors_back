@@ -46,3 +46,17 @@ export interface IUserLogin {
     email: string;
     password: string;
   }
+
+export interface Iusermail{
+    email: string;
+}
+
+export interface IToken {
+    token: string;
+}
+
+export interface IUserJwt {
+    email: string;
+    iat: number;
+    exp: number
+}

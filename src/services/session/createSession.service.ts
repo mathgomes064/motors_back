@@ -1,5 +1,5 @@
 import { User } from "../../entities/user.entity";
-import { IUserLogin } from "../../interfaces/user";
+import { IToken, IUserLogin } from "../../interfaces/user";
 import "dotenv/config";
 import { AppError } from "../../errors/appErro";
 import { compare } from "bcrypt";
@@ -31,4 +31,9 @@ const createSessionService = async ({ email, password }: IUserLogin) => {
     return token
 };
 
-export default createSessionService;
+const getUserInfo = async ({ token }: IToken) => {
+    return jwt.verify(token, String(process.env.JWT_SECRET));
+}
+
+
+export {createSessionService, getUserInfo};

@@ -4,7 +4,7 @@ import { User } from "./user.entity"
 import { Vehicle } from "./vehicle.entity"
 
 
-@Entity()
+@Entity("comment") 
 export class Comment{
     @PrimaryColumn("uuid")
     readonly id: string
@@ -13,13 +13,12 @@ export class Comment{
     description: string
 
     @Column()
-    create_at: Date
+    created_at: Date
     
-    @OneToMany((type) => User, user => user.comment,  {
-        eager: true,
-        onDelete: "CASCADE"
+    @ManyToOne((type) => User, {
+        onDelete: "CASCADE",
     })
-    user: User[]
+    user: User
 
     @ManyToOne(() => Vehicle,{
         onDelete: "CASCADE",

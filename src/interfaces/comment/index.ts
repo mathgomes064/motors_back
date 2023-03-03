@@ -1,11 +1,12 @@
 export interface ICommentCreate{
     description: string,
-    created_at?: Date
+    user: any,
+    vehicle: any,
+    
 }
 
-export interface IComment {
+export interface IComment extends ICommentCreate {
     id: string;
-    description: string;
-
+    created_at: Date, 
   }
     

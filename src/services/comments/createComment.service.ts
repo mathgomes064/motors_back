@@ -1,28 +1,24 @@
 import { Comment } from "../../entities/comment.entity";
-import { User } from "../../entities/user.entity";
-import { IComment, ICommentCreate } from "../../interfaces/comment";
-import { v4 as uuidv4 } from "uuid";
+import { ICommentCreate } from "../../interfaces/comment";
 import { AppDataSource } from "../../data-source";
-import { AppError } from "../../errors/appErro";
 
-export const commentCreateService = async({description, id}: ICommentCreate) =>{
-    const userRepository = AppDataSource.getRepository(User)
+export const commentCreateService = async({description, user, vehicle}: ICommentCreate) =>{
     const commentRepository = AppDataSource.getRepository(Comment)
 
-    const user = await userRepository.findOneBy({
-        id
-    })
 
     const comment = new Comment()
     comment.description = description,
-    comment.created_at = new Date(),
-    user = user!
+    comment.created_at = new Date()
+    
+  
+    const newComment = commentRepository.create(comment)
 
+    newComment.user = user,
+    newComment.vehicle = vehicle
 
-    commentRepository.create(comment)
-    await commentRepository.save(comment)
+    await commentRepository.save(newComment)
 
-    return comment
+    return newComment
 }
 
 export default commentCreateService

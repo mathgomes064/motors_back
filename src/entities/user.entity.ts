@@ -45,12 +45,7 @@ export class User{
         eager: true,
         onDelete: "CASCADE"
     })
-    vehicle: Vehicle[]
-
-    @ManyToOne(() => Comment)
-
-    comment: Comment;
-  
+    vehicle: Vehicle[]  
 
     constructor(){
         if(!this.id){

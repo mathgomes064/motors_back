@@ -1,27 +1,24 @@
 import express from "express"
 import { Request, Response, NextFunction } from "express";
 import { AppError } from "./errors/appErro";
-import routes from "./routes";
+import routes from "./router/vehicle.routes";
+import cors from "cors"
+import vehicleRouter from "./router/vehicle.routes";
+import commentRoutes from "./router/comment.routes";
+import userRoutes from "./router/user.routes";
+import sessionRoutes from "./router/session.routes";
 
 const app = express()
 
+app.use(cors())
+
 app.use(express.json())
 
-app.use(routes)
+app.use("/vehicles", vehicleRouter);
+app.use("/user", userRoutes);
+app.use("/login", sessionRoutes);
+app.use("/comment", commentRoutes);
 
-app.use((err: Error, request: Request, response: Response, _: NextFunction) => {
-    if (err instanceof AppError) {
-      return response.status(err.statusCode).json({
-        status: "error",
-        message: err.message,
-      });
-    }
-  
-    console.error(err);
-    return response.status(500).json({
-      status: "error",
-      message: "Internal server error",
-    });
-  });
 
-app.listen(3000)
+
+export default app;

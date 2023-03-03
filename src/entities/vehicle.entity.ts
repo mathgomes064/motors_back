@@ -1,7 +1,11 @@
-import {Entity, Column, PrimaryColumn} from "typeorm"
+import {Entity, Column, PrimaryColumn, ManyToOne, OneToMany} from "typeorm"
 import { v4 as uuid } from "uuid"
+import { Comment } from "./comment.entity"
+import { User } from "./user.entity"
+
+// Relacionamento Many to One com User (Lado Many)
    
-@Entity()
+@Entity("vehicle")
 export class Vehicle{
     @PrimaryColumn("uuid")
     readonly id: string
@@ -29,6 +33,10 @@ export class Vehicle{
 
     @Column()
     created_at: Date
+
+    @ManyToOne((type) => User, user => user.vehicle)
+    user: User
+
 
     constructor(){
         if(!this.id){

@@ -1,6 +1,9 @@
 import { DataSource } from "typeorm"
+import { Address } from "./entities/address.entity";
+import { User } from "./entities/user.entity";
 import { Vehicle } from "./entities/vehicle.entity";
-import {vehicleTable1677118460501} from "./migrations/1677118460501-vehicleTable"
+import { Comment } from "./entities/comment.entity";
+
 require("dotenv").config();
 
 export const AppDataSource = new DataSource({
@@ -14,15 +17,11 @@ export const AppDataSource = new DataSource({
 
     synchronize: false,
     logging: true,
-    entities: [Vehicle],
-    // entities: ["src/entities/*.ts"],
-    migrations: [vehicleTable1677118460501],
-    // migrations: ["src/migrations/*.ts"],
+    //entities: [Vehicle, User, Address, Comment],
+    entities: ["src/entities/*.ts"],
+    //migrations: [vehicleTable1677118460501, userAndAddressTable1677505220162, booleanChange1677517690238],
+     migrations: ["src/migrations/*.ts"],
 
 })
 
-AppDataSource.initialize().then(() => {
-    console.log("Data Source Initialized :)")
-}).catch((err) => {
-    console.error("Error during Data Source Initialization", err)
-})
+export default DataSource;

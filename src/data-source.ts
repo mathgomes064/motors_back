@@ -2,6 +2,9 @@ import { DataSource } from "typeorm"
 import { Address } from "./entities/address.entity";
 import { User } from "./entities/user.entity";
 import { Vehicle } from "./entities/vehicle.entity";
+import { Comment } from "./entities/comment.entity";
+import { initialMigration1677849800096 } from "./migrations/1677849800096-initialMigration"
+import { createTables1677849926548 } from "./migrations/1677849926548-createTables"
 require("dotenv").config();
 
 export const AppDataSource = new DataSource({
@@ -15,10 +18,11 @@ export const AppDataSource = new DataSource({
 
     synchronize: false,
     logging: true,
-    //entities: [Vehicle, User, Address, Comment],
-    entities: ["src/entities/*.ts"],
-    //migrations: [vehicleTable1677118460501, userAndAddressTable1677505220162, booleanChange1677517690238],
-     migrations: ["src/migrations/*.ts"],
+    entities: [Vehicle, User, Address, Comment],
+    // entities: ["src/entities/*{.ts}"],
+    migrations: [initialMigration1677849800096,
+        createTables1677849926548],
+    //  migrations: ["src/migrations/*{.ts}"],
 
 })
 

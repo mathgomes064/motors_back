@@ -3,7 +3,7 @@ import { v4 as uuid } from "uuid"
 
 // Relacionamento One to One com user
 
-@Entity()
+@Entity("address")
 export class Address{
     @PrimaryColumn("uuid")
     readonly id: string

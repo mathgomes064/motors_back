@@ -7,7 +7,7 @@ import { Vehicle } from "./vehicle.entity"
 // Relacionamento One to One com Address
 // Relacionamento One to Many com Vehicle (Lado one)
 
-@Entity()
+@Entity("user")
 export class User{
     @PrimaryColumn("uuid")
     readonly id: string

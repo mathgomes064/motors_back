@@ -24,7 +24,7 @@ export const vehicleCreateService = async({title, year, mileage, price, descript
     vehicle.urlImage = urlImage
     vehicle.created_at = new Date()
     vehicle.user = users!
-    vehicle.vehicleImages = [...imagesUrl]
+
 
 
     vehicleRepository.create(vehicle)

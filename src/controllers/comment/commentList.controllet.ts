@@ -4,7 +4,7 @@ import { Request, Response } from "express";
 
 export const listCommentsController = async (req: Request, res: Response) => {
   try {
-    const comments = await listCommentService();
+    const comments = await listCommentService(req);
 
     return res.send(comments);
 

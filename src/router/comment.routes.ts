@@ -7,6 +7,6 @@ import { listCommentsController } from "../controllers/comment/commentList.contr
 const commentRoutes = Router();
 
 commentRoutes.post("" ,commentCreateController );
-commentRoutes.get("", listCommentsController)
+commentRoutes.get("/:id", listCommentsController);
 
 export default commentRoutes;

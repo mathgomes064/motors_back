@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { authTokenMiddleware } from "../middlewares/authToken.middleware";
 
 const vehicleRouter = Router();
 
@@ -10,7 +11,7 @@ import { vehicleListCarsController } from "../controllers/vehicle/vehicleListCar
 import { vehicleListMotorcyclesController } from "../controllers/vehicle/vehicleListMotorcycles.controller";
 import { vehicleUpdateController } from "../controllers/vehicle/vehicleUpdate.controller";
 
-vehicleRouter.post("", vehicleCreateController);
+vehicleRouter.post("", authTokenMiddleware, vehicleCreateController);
 vehicleRouter.get("", vehicleListController);
 vehicleRouter.get("/cars", vehicleListCarsController);
 vehicleRouter.get("/motorcycles", vehicleListMotorcyclesController);

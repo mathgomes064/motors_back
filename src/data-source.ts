@@ -20,7 +20,7 @@ export const AppDataSource = new DataSource({
 
     synchronize: false,
     logging: true,
-    entities: [Vehicle, User, Address, Comment, VehicleImages],
+    entities: [Vehicle, User, Address, Comment,VehicleImages],
     //entities: ["src/entities/*.ts"],
     migrations: [initialMigration1678115739203,initialMigration1678115774567],
     //migrations: ["src/migrations/*.ts"],

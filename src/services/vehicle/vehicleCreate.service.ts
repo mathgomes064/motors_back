@@ -5,7 +5,7 @@ import { AppDataSource } from "../../data-source";
 import { User } from "../../entities/user.entity";
 import { VehicleImages } from "../../entities/vehicleImages.entity";
 
-export const vehicleCreateService = async({title, year, mileage, price, description, type, urlImage, userId,imagesUrl}: IVehicleCreate) =>{
+export const vehicleCreateService = async({title, year, mileage, price, description, type, urlImage, userId, imagesUrl, owner}: IVehicleCreate) =>{
     const vehicleRepository = AppDataSource.getRepository(Vehicle)
     const userRepository = AppDataSource.getRepository(User)
     const vehicleImagesRepository = AppDataSource.getRepository(VehicleImages);
@@ -24,8 +24,7 @@ export const vehicleCreateService = async({title, year, mileage, price, descript
     vehicle.urlImage = urlImage
     vehicle.created_at = new Date()
     vehicle.user = users!
-
-
+    vehicle.owner = owner
 
     vehicleRepository.create(vehicle)
     await vehicleRepository.save(vehicle)

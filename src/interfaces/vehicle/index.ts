@@ -19,6 +19,7 @@ export interface IVehicleCreate {
   description: string;
   type: string;
   urlImage: string;
+  owner: string
   imagesUrl: string[];
   createdAt?: Date;
   userId: string

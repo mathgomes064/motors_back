@@ -10,11 +10,15 @@ import { vehicleListByIdController } from "../controllers/vehicle/vehicleListByI
 import { vehicleListCarsController } from "../controllers/vehicle/vehicleListCars.controller";
 import { vehicleListMotorcyclesController } from "../controllers/vehicle/vehicleListMotorcycles.controller";
 import { vehicleUpdateController } from "../controllers/vehicle/vehicleUpdate.controller";
+import { getCarsByUserController } from "../controllers/vehicle/getCarByUser.controller";
+import { getMotorcyclesByUserController } from "../controllers/vehicle/getMotorcyclesByUser.controller";
 
 vehicleRouter.post("", authTokenMiddleware, vehicleCreateController);
 vehicleRouter.get("", vehicleListController);
 vehicleRouter.get("/cars", vehicleListCarsController);
 vehicleRouter.get("/motorcycles", vehicleListMotorcyclesController);
+vehicleRouter.get("/:id/cars", authTokenMiddleware, getCarsByUserController)
+vehicleRouter.get("/:id/Motorcycles", authTokenMiddleware, getMotorcyclesByUserController)
 vehicleRouter.get("/:id", vehicleListByIdController);
 vehicleRouter.patch("/:id", vehicleUpdateController);
 vehicleRouter.delete("/:id", vehicleDeleteController);

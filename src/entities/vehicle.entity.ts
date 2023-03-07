@@ -33,6 +33,9 @@ export class Vehicle{
     urlImage: string
 
     @Column()
+    owner: string
+
+    @Column()
     created_at: Date
 
     @ManyToOne((type) => User, user => user.vehicle)

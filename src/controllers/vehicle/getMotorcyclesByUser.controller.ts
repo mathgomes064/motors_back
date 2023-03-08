@@ -4,7 +4,7 @@ import { getMotorcyclesByUserService } from "../../services/vehicle/getMotorcycl
 
 export const getMotorcyclesByUserController = async(req: Request, res: Response) =>{
     try {
-        const userId = req.params.id
+        const userId = req.params.uuid
 
         const userCars = await getMotorcyclesByUserService(userId);
     

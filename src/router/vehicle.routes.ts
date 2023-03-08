@@ -12,6 +12,7 @@ import { vehicleListMotorcyclesController } from "../controllers/vehicle/vehicle
 import { vehicleUpdateController } from "../controllers/vehicle/vehicleUpdate.controller";
 import { getCarsByUserController } from "../controllers/vehicle/getCarByUser.controller";
 import { getMotorcyclesByUserController } from "../controllers/vehicle/getMotorcyclesByUser.controller";
+import authOwnerUserMiddleware from "../middlewares/authOwnerUser.middleware";
 
 vehicleRouter.post("", authTokenMiddleware, vehicleCreateController);
 vehicleRouter.get("", vehicleListController);
@@ -20,7 +21,7 @@ vehicleRouter.get("/motorcycles", vehicleListMotorcyclesController);
 vehicleRouter.get("/:id/cars", authTokenMiddleware, getCarsByUserController)
 vehicleRouter.get("/:id/Motorcycles", authTokenMiddleware, getMotorcyclesByUserController)
 vehicleRouter.get("/:id", vehicleListByIdController);
-vehicleRouter.patch("/:id", vehicleUpdateController);
-vehicleRouter.delete("/:id", vehicleDeleteController);
+vehicleRouter.patch("/:id", authOwnerUserMiddleware, vehicleUpdateController);
+vehicleRouter.delete("/:id", authOwnerUserMiddleware, vehicleDeleteController);
 
 export default vehicleRouter;

@@ -1,6 +1,4 @@
 import {Request, Response} from "express"
-import { userInfo } from "os";
-import { User } from "../../entities/user.entity";
 import { AppError, handleError } from "../../errors/appErro"
 import { IUserJwt } from "../../interfaces/user";
 import { commentCreateService} from "../../services/comments/createComment.service"
@@ -24,7 +22,7 @@ export const commentCreateController = async(req: Request, res: Response) =>{
             if(err instanceof AppError){
                 handleError(err, res)
             }
-        }
+        } 
     }
     return res.status(400).json({"msg": "Erro ao processar requisição."});
 }

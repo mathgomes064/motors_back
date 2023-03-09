@@ -20,7 +20,7 @@ vehicleRouter.get("/motorcycles", vehicleListMotorcyclesController);
 vehicleRouter.get("/:id/cars", authTokenMiddleware, getCarsByUserController)
 vehicleRouter.get("/:id/Motorcycles", authTokenMiddleware, getMotorcyclesByUserController)
 vehicleRouter.get("/:id", vehicleListByIdController);
-vehicleRouter.patch("/:id", vehicleUpdateController);
-vehicleRouter.delete("/:id", vehicleDeleteController);
+vehicleRouter.patch("/:id", authTokenMiddleware, vehicleUpdateController);
+vehicleRouter.delete("/:id", authTokenMiddleware, vehicleDeleteController);
 
 export default vehicleRouter;

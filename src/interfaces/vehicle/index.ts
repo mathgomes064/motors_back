@@ -22,7 +22,11 @@ export interface IVehicleCreate {
   owner: string
   imagesUrl: string[];
   createdAt?: Date;
-  userId: string
+}
+
+export interface IVehicleAndUser {
+  vehicle: IVehicleCreate,
+  user: any
 }
 
 export interface IVehicleUpdate {

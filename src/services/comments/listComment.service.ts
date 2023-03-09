@@ -8,18 +8,16 @@ const listCommentService = async (req: Request) :Promise<Comment[]> => {
   const commentRepository = AppDataSource.getRepository(Comment);
 
   let comments = await commentRepository.find({ 
-    relations: ['vehicle', 'user'] 
- });
+    relations: ['vehicle', 'user'],
 
-
-
-  let answare = undefined
-  answare = comments.filter((comment) => comment.vehicle.id === id)
-  if (answare != undefined){
-    return answare
-  }
- 
-  return []
+    where: {
+      vehicle: {
+        id: id
+      }
+    }
+  });
+  
+  return comments
 };
 
 export default listCommentService;

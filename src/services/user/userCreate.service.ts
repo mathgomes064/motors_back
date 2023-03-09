@@ -22,9 +22,13 @@ export const userCreateService = async({
     const users = await userRepository.find()
 
     const emailAlreadyExists = users.find((user) => user.email === email)
+    const cpfAlreadyRegister = users.find((user) => user.cpf === cpf ) 
     
     if(emailAlreadyExists){
         throw new AppError(409, "Email Already Existis")
+    }
+    if(cpfAlreadyRegister){
+        throw new AppError(409, "Cpf Already Register")
     }
 
     const addressObj = new Address()
@@ -50,7 +54,7 @@ export const userCreateService = async({
         address: addressObj,
         password: hashedPassword,
         confirmPassword: hashedConfirmPassword,
-        isAdvertiser
+        isAdvertiser,
     })
 
     await userRepository.save(newUser)

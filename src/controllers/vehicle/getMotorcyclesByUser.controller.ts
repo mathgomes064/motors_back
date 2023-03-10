@@ -3,15 +3,16 @@ import { AppError, handleError } from "../../errors/appErro";
 import { getMotorcyclesByUserService } from "../../services/vehicle/getMotorcyclesByUser.service";
 
 export const getMotorcyclesByUserController = async(req: Request, res: Response) =>{
-    try {
-        const userId = req.params.uuid
+  try {
+    const email = req.userEmail
 
-        const userCars = await getMotorcyclesByUserService(userId);
-    
-        return res.send(userCars);
-      } catch (error) {
-        if (error instanceof AppError) {
-          handleError(error, res);
-        }
-      }
+    const user = await getMotorcyclesByUserService(email)
+
+    return res.status(200).send(user)
+
+ } catch (err) {
+     if(err instanceof AppError){
+         handleError(err, res)
+     }
+ }
 }

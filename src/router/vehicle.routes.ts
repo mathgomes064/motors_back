@@ -18,8 +18,8 @@ vehicleRouter.post("", authTokenMiddleware, vehicleCreateController);
 vehicleRouter.get("", vehicleListController);
 vehicleRouter.get("/cars", vehicleListCarsController);
 vehicleRouter.get("/motorcycles", vehicleListMotorcyclesController);
-vehicleRouter.get("/:id/cars", authTokenMiddleware, getCarsByUserController)
-vehicleRouter.get("/:id/Motorcycles", authTokenMiddleware, getMotorcyclesByUserController)
+vehicleRouter.get("/userCars", authTokenMiddleware, getCarsByUserController)
+vehicleRouter.get("/userMotorcycles", authTokenMiddleware, getMotorcyclesByUserController)
 vehicleRouter.get("/:id", vehicleListByIdController);
 vehicleRouter.patch("/:id", authUserOwnVehicleMiddleware, vehicleUpdateController);
 vehicleRouter.delete("/:id", authUserOwnVehicleMiddleware, vehicleDeleteController);

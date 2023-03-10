@@ -7,6 +7,7 @@ export interface IVehicle {
   description: string;
   type: string;
   urlImage: string;
+  imagesUrl: string[];
   createdAt: Date;
 }
 
@@ -18,8 +19,14 @@ export interface IVehicleCreate {
   description: string;
   type: string;
   urlImage: string;
+  owner: string
+  imagesUrl: string[];
   createdAt?: Date;
-  userId: string
+}
+
+export interface IVehicleAndUser {
+  vehicle: IVehicleCreate,
+  user: any
 }
 
 export interface IVehicleUpdate {
@@ -31,4 +38,7 @@ export interface IVehicleUpdate {
   type?: string;
   urlImage?: string;
   createdAt?: Date;
+  imagesUrl?: string[];
 }
+
+

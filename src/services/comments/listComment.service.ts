@@ -1,13 +1,23 @@
 import { AppDataSource } from "../../data-source";
 import { Comment } from "../../entities/comment.entity";
+import { Request } from "express";
 
 
-const listCommentService = async () :Promise<Comment[]> => {
+const listCommentService = async (req: Request) :Promise<Comment[]> => {
+  const id = req.params.id
   const commentRepository = AppDataSource.getRepository(Comment);
 
-  const comments = await commentRepository.find();
- 
-  return comments;
+  let comments = await commentRepository.find({ 
+    relations: ['vehicle', 'user'],
+
+    where: {
+      vehicle: {
+        id: id
+      }
+    }
+  });
+  
+  return comments
 };
 
 export default listCommentService;

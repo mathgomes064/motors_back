@@ -7,7 +7,7 @@ import { Vehicle } from "./vehicle.entity"
 // Relacionamento One to One com Address
 // Relacionamento One to Many com Vehicle (Lado one)
 
-@Entity()
+@Entity("user")
 export class User{
     @PrimaryColumn("uuid")
     readonly id: string
@@ -40,6 +40,9 @@ export class User{
 
     @Column()
     password: string
+
+    @Column()
+    confirmPassword: string
 
     @OneToMany((type) => Vehicle, vehicle => vehicle.user, {
         eager: true,

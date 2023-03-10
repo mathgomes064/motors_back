@@ -14,6 +14,7 @@ export const userCreateService = async({
     description,
     address,
     password,
+    confirmPassword,
     isAdvertiser
 }: IUserCreate): Promise<User> =>{
     const userRepository = AppDataSource.getRepository(User)
@@ -21,9 +22,13 @@ export const userCreateService = async({
     const users = await userRepository.find()
 
     const emailAlreadyExists = users.find((user) => user.email === email)
+    const cpfAlreadyRegister = users.find((user) => user.cpf === cpf ) 
     
     if(emailAlreadyExists){
         throw new AppError(409, "Email Already Existis")
+    }
+    if(cpfAlreadyRegister){
+        throw new AppError(409, "Cpf Already Register")
     }
 
     const addressObj = new Address()
@@ -37,6 +42,7 @@ export const userCreateService = async({
     await addressRepository.save(addressObj)
 
     const hashedPassword = await hash(password, 10);
+    const hashedConfirmPassword = await hash(confirmPassword, 10)
 
     const newUser = userRepository.create({
         name,
@@ -47,7 +53,8 @@ export const userCreateService = async({
         description,
         address: addressObj,
         password: hashedPassword,
-        isAdvertiser
+        confirmPassword: hashedConfirmPassword,
+        isAdvertiser,
     })
 
     await userRepository.save(newUser)

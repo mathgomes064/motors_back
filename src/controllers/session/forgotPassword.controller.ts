@@ -38,7 +38,7 @@ export const forgotPasswordController = async (req: Request, res: Response) => {
       from: 'Kenzie Motors<kenzieMotorsGrupo13@hotmail.com>',
       to: email,
       subject: 'Recuperação de senha Kenzie Motors!',
-      html: `<p>Olá, sua nova senha é: ${newPassword}</p><br/> <a href='http://localhost:3000/login'>Retornar para página de Login</a>`,
+      html: `<p>Olá, sua nova senha é: ${newPassword}</p><br/> <a href='http://localhost:5173/login'>Retornar para página de Login</a>`,
       text: '',
     }).then(
       () => {

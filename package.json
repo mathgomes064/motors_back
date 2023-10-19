@@ -6,7 +6,7 @@
   "author": "Matheus_Gomes <mathgomes007@htomail.com>",
   "license": "MIT",
   "engines": {
-    "node": "14.x"
+    "node": "18.x"
   },
   "scripts": {
     "dev": "ts-node-dev --ignore-watch node_modules src/server.ts",

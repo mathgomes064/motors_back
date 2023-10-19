@@ -5,9 +5,13 @@
   "repository": "git@github.com:mathgomes064/Projeto-Back-KenzieMotors.git",
   "author": "Matheus_Gomes <mathgomes007@htomail.com>",
   "license": "MIT",
+  "engines": {
+    "node": "14.x"
+  },
   "scripts": {
     "dev": "ts-node-dev --ignore-watch node_modules src/server.ts",
-    "typeorm": "typeorm-ts-node-commonjs"
+    "typeorm": "typeorm-ts-node-commonjs",
+    "start": "node ./src/app.ts"
   },
   "devDependencies": {
     "@types/express": "^4.17.17",

@@ -4,8 +4,9 @@ import { User } from "./entities/user.entity";
 import { Vehicle } from "./entities/vehicle.entity";
 import { Comment } from "./entities/comment.entity";
 import { VehicleImages } from "./entities/vehicleImages.entity";
-import {initialMigration1678389775885} from "./migrations/1678389775885-initialMigration"
-import {generateTables1678389843772} from "./migrations/1678389843772-generateTables"
+import { initialMigration1696947101758 } from "./migrations/1696947101758-initialMigration"
+import { generateTables1696947131228 } from "./migrations/1696947131228-generateTables"
+
 require("dotenv").config();
 
 export const AppDataSource = new DataSource({
@@ -21,7 +22,10 @@ export const AppDataSource = new DataSource({
     logging: true,
     entities: [Vehicle, User, Address, Comment, VehicleImages],
     // entities: ["src/entities/*.ts"],
-    migrations: [initialMigration1678389775885, generateTables1678389843772],
+    migrations: [
+        initialMigration1696947101758,
+        generateTables1696947131228
+    ],
     // migrations: ["src/migrations/*.ts"],
 })
 
